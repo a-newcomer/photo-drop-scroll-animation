@@ -1,0 +1,148 @@
+
+.keyframes(@name; @arguments) {
+  @-moz-keyframes @name {
+    @arguments();
+  }
+  @-webkit-keyframes @name {
+    @arguments();
+  }
+  @keyframes @name {
+    @arguments();
+  }
+}
+
+.animation(@arguments) {
+  -webkit-animation: @arguments;
+  -moz-animation: @arguments;
+  animation: @arguments;
+}
+
+.anime.one.in-view {
+   .keyframes(movement-right-25;{
+		0% {
+            right: -100px;
+            margin-top: 10px;
+            opacity: 0;
+            transform: rotate(0deg) scale(1); 
+       }
+		100% {
+            right: 10px; 
+            margin-top: -190px;
+            opacity: 1;
+            transform: rotate(25deg) scale(.95);
+       }
+		}
+    );
+
+  .animation(movement-right-25 .5s ease-out 0s 1 normal both); 
+}
+
+.anime.in-view.two {
+   .keyframes(movement-left-17;{
+		0% {
+            right: 10px; 
+            margin-top: 10px;
+            opacity: 0;
+            transform: rotate(0deg) scale(1); 
+       }
+       60% {
+//            margin-right: 100px;
+       }
+		100% {
+            right: 10px;
+            margin-top: -140px;
+            opacity: 1;
+            transform: rotate(-17deg) scale(.95);
+       }
+		}
+    );
+
+  .animation(movement-left-17 .4s ease-out .5s 1 normal both); 
+}
+
+.anime.in-view.three{
+   .keyframes(movement-right-17;{
+		0% {
+            left: -100px; 
+            margin-top: 10px;
+            opacity: 0;
+            transform: rotate(0deg) scale(1); 
+       }
+		100% {
+            left: 10px;
+            margin-top: -300px;
+            opacity: 1;
+            transform: rotate(17deg) scale(.95);
+       }
+		}
+    );
+
+  .animation(movement-right-17 .4s ease-out 1s 1 normal both); 
+}
+
+body {
+      margin: 0;
+      padding:0;
+    #wrap {
+      min-height: 100vh;
+      width: 100%;
+      display: flex;
+      flex-flow: column nowrap;
+      background-color: #ccc;
+    }
+    article {
+      flex-shrink: 1;
+        /*top of kitty photos must start below viewport - take padding-bottom below into viewport calcs, or use 'align-items:flex-center' and no padding-bottom*/
+      flex-basis: 140vh;
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: center;
+      align-items: flex-end;
+      position: relative;
+      padding-bottom: 40vh;
+    }
+    .img-box {
+      height: 300px;
+      width: 300px;
+      border-radius: 3px;
+      border: 20px solid white;
+      background-color: white;
+      margin: 10px;
+      position: relative;
+    }
+    img {
+      width: 100%;
+      height: auto;
+      /*border-radius: 6px;*/
+    }
+    .anime {
+//      opacity: 0;
+    }
+    .anime.in-view{
+      /*-----this is what you need to call to the keyframe below - it controls the "how" of the movement in this order:
+      name - duration - timing-function (like ease-in) - delay - iteration-count - direction - fill-mode - play-state 
+      long-hand:
+      animation-name: movement;
+      animation-duration: 2s;
+      animation-timing-function: ease-out;
+      animation-delay: 0s;
+      animation-iteration-count: 1;
+      animation-direction: forwards (or alternate, backwards, etc);
+      animation-fill-mode: both (or forwards or backwards etc - what the animation looks like before or after the iteration);
+      animation-play-state: running (or paused);      
+      ----*/
+      //animation: movement-right .4s ease-out 0s 1 normal both;
+    }
+    header {
+      background-color: #333;
+      width:100%;
+      flex-basis: 80px;
+      flex-grow: 2;
+    }
+    footer {
+      background-color: #333;
+      width:100%;
+      flex-grow: 2;
+      flex-basis: 80px;
+    }
+}

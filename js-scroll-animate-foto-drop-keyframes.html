@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<!--        <script src="kitties.js"></script>-->
+    <title>Scroll animate photo drop animation tests -keyframes</title>
+     <link rel="stylesheet" href="styles.css"> 
+    <style>
+    
+    </style>
+    </head>
+
+    <body>
+      <div id="wrap">
+
+        <header>
+        </header>
+
+        <article> 
+            <figure class="img-box anime one"><img src="http://placekitten.com/g/595/595" alt="cute kitten from placekitten.com"></figure>
+            <figure class="img-box anime two"><img src="http://placekitten.com/580/580" alt="another cute kitten from placekitten.com"></figure>
+            <figure class="img-box anime three"><img src="http://placekitten.com/600/600" alt="a third cute kitten from placekitten.com"></figure>
+        </article>
+
+        <footer>
+        </footer>
+
+      </div>
+
+      <script>
+      //Cache reference to window and animation items
+        var $animation_elements = $('.anime');
+        var $window = $(window);
+
+        $window.on('scroll', check_if_in_view);
+
+        $window.on('scroll resize', check_if_in_view);
+
+        $window.trigger('scroll');
+
+        function check_if_in_view() {
+          var window_height = $window.height();
+          var window_top_position = $window.scrollTop();
+          var window_bottom_position = (window_top_position + window_height);
+
+          $.each($animation_elements, function() {
+            var $element = $(this);
+            var element_height = $element.outerHeight();
+            var element_top_position = $element.offset().top;
+            var element_bottom_position = (element_top_position + element_height);
+
+            //check to see if this current container is within viewport
+            if ((element_bottom_position >= window_top_position) &&
+                (element_top_position <= window_bottom_position)) {
+              $element.addClass('in-view');
+            } else {
+              $element.removeClass('in-view');
+            }
+          });
+        }
+
+      </script>
+	</body>
+
+</html>
